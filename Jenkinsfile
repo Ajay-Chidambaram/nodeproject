@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'forever start index.js'  
+                sh 'forever start -c node index.js'  
                 echo 'Deploying....'
             }
         }
