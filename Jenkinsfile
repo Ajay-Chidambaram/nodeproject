@@ -17,7 +17,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'forever start ./bin/www '  
+                sh 'forever stopall'
+                sh 'nohup forever start index.js'  
                 echo 'Deploying....'
             }
         }
