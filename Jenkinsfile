@@ -1,4 +1,3 @@
-export BUILD_ID=dontKillMe
 pipeline {
     agent any
 
@@ -18,6 +17,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh 'export BUILD_ID=dontKillMe'
                 sh 'forever start index.js'  
                 echo 'Deploying....'
             }
