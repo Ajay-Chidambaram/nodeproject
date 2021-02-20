@@ -1,3 +1,4 @@
+export BUILD_ID=dontKillMe
 pipeline {
     agent any
 
