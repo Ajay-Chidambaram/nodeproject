@@ -18,7 +18,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'forever start index.js'  
-                sh 'BUILD_ID=dontKillMe forever -a -l myforever.log index.js &'
                 echo 'Deploying....'
             }
         }
