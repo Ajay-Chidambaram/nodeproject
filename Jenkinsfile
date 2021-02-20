@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'export JENKINS_NODE_COOKIE=dontKillMe'
+                sh 'BUILD_ID=dontKillMe forever -a -l myforever.log index.js &'
                 sh 'forever start index.js'  
                 echo 'Deploying....'
             }
