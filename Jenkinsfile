@@ -20,7 +20,7 @@ pipeline {
                 sh 'forever stopall'
                 sh 'pwd'
                 sh 'ls'
-                sh 'BUILD_ID=dontKillMe forever start index.js'  
+                sh 'BUILD_ID=dontKillMe nohup npm start &'  
                 echo 'Deploying....'
             }
         }
