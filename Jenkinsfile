@@ -1,27 +1,37 @@
 pipeline {
+    environment {
+        registry = "chidambaram27/chidambaram-repo"
+        registryCredential = 'docker'
+        dockerImage = ''
+    }
+
     agent any
 
-    tools {nodejs "node-build"}
-
     stages {
-        stage('Build') {
+        stage('Cloning our Git') {
             steps {
-                sh 'npm install'
-                echo 'Building..'
+                git 'https://github.com/Ajay-Chidambaram/nodeproject.git'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+        stage('Building our image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'forever stopall'
-                sh 'pwd'
-                sh 'ls'
-                sh 'BUILD_ID=dontKillMe nohup npm start &'  
-                echo 'Deploying....'
+        stage('Deploy our image') {
+            steps{
+                script {
+                        docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Cleaning up') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
