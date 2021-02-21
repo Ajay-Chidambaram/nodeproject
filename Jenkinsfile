@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'forever stopall'
-                sh 'nohup forever start index.js'  
+                sh 'sudo NODE_ENV=development forever start -a -l logs/forever.log -o logs/output.log -e logs/error.log index.js'  
                 echo 'Deploying....'
             }
         }
