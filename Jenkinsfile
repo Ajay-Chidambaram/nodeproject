@@ -34,7 +34,7 @@ pipeline {
         stage('Cleaning up') {
             steps{
                 sh "docker rmi $registry:$BUILD_NUMBER"
-                slackSend color: "danger", message: "Message from Chidambaram's Jenkins Pipeline"
+                slackSend color: "danger", message: "Message from Ajay's Jenkins Pipeline"
             }
         }
     }
