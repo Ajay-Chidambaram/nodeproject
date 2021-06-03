@@ -6,7 +6,7 @@ pipeline {
     }
 
     agent {
-        label "slave"   
+        label "slave-build"   
     }
 
     stages {
