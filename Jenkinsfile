@@ -20,7 +20,7 @@ pipeline {
         stage('Building our image') {
             steps{
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build(registry + ":$BUILD_NUMBER", "/home/ubuntu/jenkins_agent/workspace/Node-App-Build/")
                 }
             }
         }
