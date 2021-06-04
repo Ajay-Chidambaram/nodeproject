@@ -5,11 +5,11 @@ pipeline {
         dockerImage = ''
     }
 
-//     agent {
-//         label "slave-build"   
-//     }
+    agent {
+        label "slave"   
+    }
     
-    agent any
+//     agent any
 
     stages {
         stage('Cloning our Git') {
